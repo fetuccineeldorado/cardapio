@@ -226,6 +226,84 @@ MIT License - Use como quiser!
 - [ ] Sistema de avaliações de produtos
 - [ ] Múltiplos endereços de entrega
 
+## 🔧 Troubleshooting
+
+### Build está falhando
+
+**Problema:** Erro ao fazer build do projeto
+```bash
+npm run build
+```
+
+**Solução:**
+1. Limpe o cache e reinstale as dependências:
+```bash
+rm -rf node_modules package-lock.json .next
+npm install
+npm run build
+```
+
+### Imagens não estão carregando
+
+**Problema:** Imagens do Unsplash não aparecem
+
+**Solução:** Verifique se o `next.config.js` tem a configuração correta:
+```javascript
+images: {
+  remotePatterns: [
+    {
+      protocol: 'https',
+      hostname: 'images.unsplash.com',
+    },
+  ],
+}
+```
+
+### WhatsApp não abre ao clicar
+
+**Problema:** Botão de enviar para WhatsApp não funciona
+
+**Solução:**
+1. Verifique o número no arquivo `src/data/config.ts`
+2. Formato correto: `5511999999999` (código país + DDD + número)
+3. Remova espaços, traços ou parênteses
+4. Teste em um dispositivo com WhatsApp instalado
+
+### Carrinho não está salvando
+
+**Problema:** Itens do carrinho somem ao recarregar a página
+
+**Solução:**
+1. Verifique se o localStorage está habilitado no navegador
+2. Não use modo anônimo/privado
+3. Verifique permissões do site
+
+### Erro de TypeScript
+
+**Problema:** Erros de tipo ao desenvolver
+
+**Solução:**
+```bash
+# Verificar erros
+npm run build
+
+# Ou use o TypeScript check
+npx tsc --noEmit
+```
+
+### Porta 3000 já em uso
+
+**Problema:** `Error: listen EADDRINUSE: address already in use :::3000`
+
+**Solução:**
+```bash
+# Matar processo na porta 3000
+npx kill-port 3000
+
+# Ou use outra porta
+PORT=3001 npm run dev
+```
+
 ## 📞 Suporte
 
 Em caso de dúvidas ou problemas, abra uma issue no GitHub.
